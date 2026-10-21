@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VPC Visual - Bharathi's Gated Housing Society</title>
+  <meta name="description" content="An animated, beginner-friendly explanation of an AWS VPC, told as a gated housing society.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <header class="intro">
+        <h1>Bharathi's gated housing society</h1>
+        <p>An AWS VPC, explained step by step. Pick a step; the picture keeps growing.</p>
+      </header>
+
+      <nav aria-label="Steps">
+        <ol id="steps" class="steps"></ol>
+      </nav>
+
+      <div class="controls">
+        <button type="button" id="auto" class="btn" aria-pressed="false">Auto-play</button>
+        <button type="button" id="reset" class="btn btn-ghost">Reset</button>
+      </div>
+
+      <section class="legend" aria-labelledby="legend-title">
+        <h2 id="legend-title">What the moving things mean</h2>
+        <ul>
+          <li><span class="ico" aria-hidden="true">&#9993;&#65039;</span> Visitor request</li>
+          <li><span class="ico" aria-hidden="true">&#128190;</span> Data</li>
+          <li><span class="ico" aria-hidden="true">&#128257;</span> Database copy (replication)</li>
+          <li><span class="ico" aria-hidden="true">&#128230;</span> Software update</li>
+          <li><span class="ico" aria-hidden="true">&#128520;</span> Intruder</li>
+          <li><span class="ico" aria-hidden="true">&#128274;</span> Office VPN traffic</li>
+          <li><span class="ico" aria-hidden="true">&#129309;</span> Partner peering</li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="main">
+      <div class="stage-wrap">
+        <svg id="diagram" viewBox="0 0 1100 620" role="img" aria-label="Animated diagram of an AWS VPC drawn as a gated housing society"></svg>
+      </div>
+
+      <article class="caption" aria-live="polite">
+        <h2 id="cap-title"></h2>
+        <div class="cap-grid">
+          <section><h3>In plain words</h3><p id="cap-plain"></p></section>
+          <section><h3>Technical name</h3><p id="cap-tech"></p></section>
+          <section><h3>Watch the picture</h3><p id="cap-watch"></p></section>
+        </div>
+      </article>
+    </main>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

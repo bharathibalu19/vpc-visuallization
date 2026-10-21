@@ -1,0 +1,71 @@
+:root{
+  --bg:#f6f4ee; --panel:#ffffff; --text:#1c2333; --muted:#566079; --line:#d9dce6;
+  --accent:#0f766e; --accent-ink:#ffffff; --focus:#d97706;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0d1220; --panel:#151c30; --text:#e8eefc; --muted:#9fb0d6; --line:#27314d; --accent:#2dd4bf; --accent-ink:#06201d; --focus:#fbbf24; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.app{display:grid;grid-template-columns:310px minmax(0,1fr);gap:24px;max-width:1500px;margin:0 auto;padding:20px}
+.side{position:sticky;top:20px;align-self:start;max-height:calc(100vh - 40px);overflow:auto;padding:4px 4px 4px 0}
+.intro h1{font-size:1.5rem;line-height:1.15;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
+.intro p{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.step{width:100%;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 10px;cursor:pointer}
+.step:hover{border-color:var(--accent)}
+.step .num{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--line);font-weight:800;font-size:.9rem}
+.step .t{display:block;font-weight:600;font-size:.95rem;line-height:1.2}
+.step .s{display:block;color:var(--muted);font-size:.8rem;line-height:1.25}
+.step[aria-current="step"]{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}
+.step[aria-current="step"] .num{background:var(--accent);color:var(--accent-ink)}
+.step.done .num{background:color-mix(in srgb,var(--accent) 35%,var(--line))}
+
+.controls{display:flex;gap:8px;margin:14px 0}
+.btn{flex:1;border:0;border-radius:10px;padding:10px 12px;font-weight:600;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:2px}
+
+.legend{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.legend h2{font-size:.9rem;margin:0 0 8px}
+.legend ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.88rem;color:var(--muted)}
+.ico{display:inline-block;width:1.6em;text-align:center}
+
+.stage-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line)}
+#diagram{display:block;width:100%;min-width:820px;height:auto;background:#0b1433}
+
+.caption{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.caption h2{margin:0 0 12px;font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
+.cap-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px}
+.caption h3{margin:0 0 4px;font-size:.9rem;color:var(--accent)}
+.caption p{margin:0;max-width:62ch}
+
+/* diagram items */
+.item{opacity:0;transition:opacity .6s ease;pointer-events:none}
+.item.on{opacity:1}
+.item.new.on{animation:glow 1.8s ease-out}
+@keyframes glow{
+  0%{opacity:0;filter:drop-shadow(0 0 0 rgba(255,255,255,0))}
+  35%{opacity:1;filter:drop-shadow(0 0 10px rgba(255,255,255,.95))}
+  100%{opacity:1;filter:drop-shadow(0 0 0 rgba(255,255,255,0))}
+}
+.wire{stroke-dasharray:7 6;stroke-linecap:round;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-13}}
+.pulse{animation:pulse 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{50%{transform:scale(1.15)}}
+
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr);padding:12px;gap:14px}
+  .side{position:static;max-height:none;overflow:visible;padding:0}
+  .steps{flex-direction:row;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}
+  .step{min-width:190px;flex:0 0 auto;scroll-snap-align:start}
+  .cap-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
